@@ -11,5 +11,10 @@ config_version=5
 [application]
 
 config/name="tic_tack_erkhmes_toe"
+run/main_scene="uid://k50y14okngo3"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Net="*res://Autoload/Net.gd"
