@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cymmcpw8wixdv"]
+[gd_scene load_steps=4 format=3 uid="uid://cymmcpw8wixdv"]
 
 [ext_resource type="Texture2D" uid="uid://dn6ucnmfjawiv" path="res://icon.svg" id="1_wbfu4"]
 [ext_resource type="Script" uid="uid://c4jukxudsm544" path="res://button.gd" id="2_xkndl"]
+[ext_resource type="VideoStream" path="res://Rick-Astley-Never-Gonna-Give-You-Up-_Official-Music-Video_.ogv" id="3_u44n3"]
 
 [node name="Main" type="Node2D"]
 
@@ -17,5 +18,13 @@ offset_right = 731.0
 offset_bottom = 113.0
 text = "Free dicks"
 script = ExtResource("2_xkndl")
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+stream = ExtResource("3_u44n3")
+volume_db = 24.0
+autoplay = true
 
 [connection signal="pressed" from="Button" to="Button" method="_on_pressed"]
