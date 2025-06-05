@@ -1,8 +1,8 @@
 extends Area2D
 
 var hp := 5
-
 @rpc("authority")
+
 func take_damage(amount: int) -> void:
 	# Only the server runs this code
 	hp -= amount
@@ -20,7 +20,7 @@ func update_hp(new_hp: int) -> void:
 	hp = new_hp
 	print("Updated HP on peer:", hp)
 
-@rpc("any_peer")
+@rpc("any_peer","call_local")
 func die() -> void:
 	print("You died!")
 	get_parent().queue_free()
