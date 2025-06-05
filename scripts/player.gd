@@ -1,5 +1,5 @@
 extends Area2D
-
+@export var player_scene: PackedScene
 var hp := 5
 @rpc("authority")
 
@@ -21,6 +21,6 @@ func update_hp(new_hp: int) -> void:
 	print("Updated HP on peer:", hp)
 
 @rpc("any_peer","call_local")
-func die() -> void:
+func die():
 	print("You died!")
-	get_parent().queue_free()
+	get_parent().global_position = Vector2(10000,10000)

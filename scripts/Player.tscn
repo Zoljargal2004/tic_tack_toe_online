@@ -26,6 +26,7 @@ replication_config = SubResource("SceneReplicationConfig_115ip")
 
 [node name="Player" type="Area2D" parent="." groups=["Player"]]
 script = ExtResource("4_2hu6u")
+player_scene = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 shape = SubResource("RectangleShape2D_dlup5")

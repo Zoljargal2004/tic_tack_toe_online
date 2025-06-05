@@ -13,7 +13,7 @@ func sync_position(pos: Vector2):
 
 func _physics_process(delta):
 	if is_multiplayer_authority():
-		velocity = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down") * 500
+		velocity = Input.get_vector("Left", "Right", "Up", "Down") * 500
 		move_and_slide()
 		if Input.is_action_just_pressed("space"):
 			shoot()

@@ -6,3 +6,13 @@
 [node name="Main" type="Node2D"]
 script = ExtResource("1_sb48q")
 player_scene = ExtResource("2_t88pq")
+
+[node name="Sex" type="Button" parent="."]
+offset_left = 470.0
+offset_top = 467.0
+offset_right = 703.0
+offset_bottom = 560.0
+shortcut_feedback = false
+text = "RESPAWN"
+
+[connection signal="pressed" from="Sex" to="." method="_on_sex_pressed"]
