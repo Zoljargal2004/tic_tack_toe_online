@@ -18,17 +18,15 @@ func _physics_process(delta):
 		if Input.is_action_just_pressed("space"):
 			shoot()
 @export var bullet_scene: PackedScene
+@rpc("any_peer", "call_local")
+func spawn_bullet(position: Vector2, direction: Vector2):
+	var bullet = bullet_scene.instantiate()
+	bullet.global_position = position
+	bullet.direction = direction
+	bullet.set_multiplayer_authority(multiplayer.get_remote_sender_id())
+	get_tree().current_scene.add_child(bullet)
 
 func shoot():
-	if bullet_scene:
-		var bullet = bullet_scene.instantiate()
-		
-		var direction = (get_global_mouse_position() - global_position).normalized()
-		
-		# Offset bullet spawn slightly away from shooter
-		bullet.global_position = global_position + direction * 100
-		
-		# Assign direction to bullet
-		bullet.direction = direction
-
-		get_tree().current_scene.add_child(bullet)
+	var direction = (get_global_mouse_position() - global_position).normalized()
+	var position = global_position + direction * 100
+	spawn_bullet.rpc(position, direction)
