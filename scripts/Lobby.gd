@@ -25,9 +25,6 @@ func _add_player(id = 1):
 	var player = player_scene.instantiate()
 	player.name = str(id)
 	call_deferred("add_child",player)
-func _on_connected():
-	print("Successfully connected!")
-
 func _on_connection_failed():
 	print("Failed to connect to server.")
 	# Optional: update UI to tell the user
@@ -55,8 +52,19 @@ func _ready():
 
 func _on_Host_pressed():
 	host_game()
+	switch_to_game_scene.rpc()  # Call on all peers
 
+func _on_connected():
+	print("Successfully connected!")
+	switch_to_game_scene.rpc()
 
 func _on_Join_pressed():
 	join_game(ip_field.text)
 	print("Hello")
+
+@rpc("any_peer", "call_local")
+func switch_to_game_scene():
+	var game_scene = load("res://Game.tscn").instantiate()
+	get_tree().root.add_child(game_scene)
+	get_tree().current_scene.queue_free()
+	get_tree().current_scene = game_scene
